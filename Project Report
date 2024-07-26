@@ -1,0 +1,53 @@
+Project Report: Automating Login and Logout Features for Swaglabs Website
+Project Overview
+Project Title: Automation of Login and Logout Features for Swaglabs Website
+Objective: Automate the login and logout functionalities of the Swaglabs website to ensure seamless, repeatable testing and validation of these features.
+Website URL: Swaglabs
+Tools and Technologies:
+•	Programming Language: Python
+•	Testing Framework: pytest
+•	Web Automation Tool: Selenium WebDriver
+Project Goals
+1.	Automate Login Process: Create a test to verify successful login to the Swaglabs website with valid credentials.
+2.	Automate Logout Process: Create a test to verify successful logout from the Swaglabs website.
+3.	Validation: Ensure that login and logout processes work as expected.
+Methodology
+Login Test Case:
+•	Preconditions: Access to Swaglabs website.
+•	Steps:
+1.	Open the Swaglabs website.
+2.	Enter valid username and password.
+3.	Click the login button.
+4.	Verify the successful redirection to the home page.
+•	Expected Result: User is successfully redirected to the home page with a valid session.
+
+def test_login(driver):
+    login_page = LoginPage(driver)
+    inventory_page = InventoryPage(driver)
+
+    login_page.load("https://www.saucedemo.com/")  # Navigate to login page
+    login_page.login("standard_user", "secret_sauce")  # Perform login
+
+    assert inventory_page.is_logged_in(), "Login failed or inventory page not loaded"
+Logout Test Case:
+•	Preconditions: User is logged in.
+•	Steps:
+1.	Click the logout button.
+2.	Verify that the user is redirected to the login page.
+•	Expected Result: User is successfully logged out and redirected to the login page.
+
+def test_logout(driver):
+    login_page = LoginPage(driver)
+    inventory_page = InventoryPage(driver)
+
+    login_page.load("https://www.saucedemo.com/")  # Navigate to login page
+    login_page.login("standard_user", "secret_sauce")  # Perform login
+    inventory_page.logout()  # Perform logout
+
+    assert not inventory_page.is_logged_in(), "Logout unsuccessful"
+
+Results
+•	Login Test: Successfully automated the login process. Verified that after entering valid credentials, users are redirected to the home page.
+•	Logout Test: Successfully automated the logout process. Verified that users are redirected to the login page after logout.
+GitHub
+https://github.com/KirtigaBalakrishnan/Automation_E-commerce
